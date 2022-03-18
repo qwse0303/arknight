@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    12321321 
     <div id="circlecursor" v-drag></div>
     <div id="cursor"></div>
 
@@ -43,9 +42,12 @@ body {
 }
 #app {  
   position: fixed;
-  height: 50%;
-  width: 50%;
-  cursor: default;
+  height: 200%;
+  width: 200%;
+  cursor: none;
+	background:black;
+  margin-top: -10%;
+  margin-left: -10%;
 
 }
 #Snow{
@@ -57,10 +59,6 @@ body {
   z-index: 99999;
   background: rgba(0, 191, 255,0.4);
   pointer-events: none;
-}
-div
-{
-	background:red;
 }
 
 #circlecursor{
