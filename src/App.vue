@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     12321321 
-    <div id="cursor" v-drag></div>
+    <div id="circlecursor" v-drag></div>
+    <div id="cursor"></div>
 
 
   </div>
@@ -9,19 +10,18 @@
 
 <script>
 //import $ from 'jquery'
+import {TweenMax} from 'gsap'
 
 export default {
   name: 'App',
   directives:{
     drag(el){
-      let cursor=el;
+      let small=el;
+      let cursor=document.getElementById('cursor')
       window.onmousemove = function(e){
           //通过事件委托，计算移动的距离
-          let x = e.clientX ;
-          let y = e.clientY;
-          //移动当前元素
-          cursor.style.left = x + "px";
-          cursor.style.top = y + "px";
+          TweenMax.to(cursor,1,{x:e.pageX-5,y:e.pageY-30})
+          TweenMax.to(small,0,{x:e.pageX-10,y:e.pageY-32})
       }
     }
   },
@@ -63,9 +63,18 @@ div
 	background:red;
 }
 
+#circlecursor{
+  content: '';
+  position: absolute;
+  z-index: 1000;
+  height: 7px;
+  width: 7px;
+  border-radius: 100%;
+  background-color: white;
+}
 #cursor {
   backface-visibility: hidden;
-  z-index: 1000000000;
+  z-index: 100;
   position: fixed;
   width: 40px;
   height: 40px;
@@ -81,6 +90,7 @@ div
   transition-timing-function: ease-out;
 }
 
+/*
 #cursor::before {
   content: '';
   position: absolute;
@@ -88,6 +98,5 @@ div
   width: 7px;
   border-radius: 100%;
   background-color: white;
-}
-
+}*/
 </style>
